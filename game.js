@@ -232,7 +232,7 @@ var Play = new Phaser.Class({
     },
 
     create: function() {
-        player = this.physics.add.image(10, 10, "tree");
+        player = this.physics.add.image(config.width/2, config.height, "tree");
 
         // change the size of the player
         player.setScale(0.8);
@@ -408,7 +408,7 @@ var Level2 = new Phaser.Class({
 
   create: function () {
       
-    player = this.physics.add.image(10, 10, "tree");
+    player = this.physics.add.image(config.width/2, config.height / 2 , "tree");
     platform = this.physics.add.staticGroup();
     platform.create(0, config.height / 2 + 100, "platform");
     platform.create(300, config.height / 2 + 100, "platform");
