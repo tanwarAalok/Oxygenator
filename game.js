@@ -157,6 +157,12 @@ var GameOver = new Phaser.Class({
       .setOrigin(0.5);
     
     
+    this.add.text(config.width / 2 - 150, config.height / 2 + 100, `Your score is ${score}`, {
+      fontSize: "32px",
+      color: "#ff0000",
+    });
+    
+    
 		// const button = this.add
     //   .rectangle(config.width * 0.5, config.height * 0.55, 150, 75, 0xffffff)
     //   .setInteractive()
