@@ -53,82 +53,82 @@ function moveObject_l2(object, speed) {
 
 function scoreSun(player, sun) {
     score += 5;
-    scoreText.setText(`score: ${score}`);
+    scoreText.setText(`Score: ${score}`);
     sun.disableBody(true, true);
     countSun++;
 }
 function scoreSun2(player, sun) {
     score += 5;
-    scoreText.setText(`score: ${score}`);
+    scoreText.setText(`Score: ${score}`);
     sun.disableBody(true, true);
     countSun2++;
 }
 
 function scoreCo(player, co) {
     score += 5;
-    scoreText.setText(`score: ${score}`);
+    scoreText.setText(`Score: ${score}`);
     co.disableBody(true, true);
     countCo++;
 }
 
 function scoreCo2(player, co) {
     score += 5;
-    scoreText.setText(`score: ${score}`);
+    scoreText.setText(`Score: ${score}`);
     co.disableBody(true, true);
     countCo2++;
 }
 
 function lifeLeft(player, cross) {
     life -= 1;
-    lifeText.setText(`life: ${life}`);
+    lifeText.setText(`Life: ${life}`);
     cross.disableBody(true, true);
     countCross++;
 }
 
 function lifeLeft2(player, cross) {
     life -= 1;
-    lifeText.setText(`life: ${life}`);
+    lifeText.setText(`Life: ${life}`);
     cross.disableBody(true, true);
     countCross2++;
 }
 
 function scoreSun_l2(player, sun) {
   score += 5;
-  scoreText.setText(`score: ${score}`);
+  scoreText.setText(`Score: ${score}`);
   sun.disableBody(true, true);
   countSun_l2++;
 }
 function scoreSun2_l2(player, sun) {
   score += 5;
-  scoreText.setText(`score: ${score}`);
+  scoreText.setText(`Score: ${score}`);
   sun.disableBody(true, true);
   countSun2_l2++;
 }
 
 function scoreCo_l2(player, co) {
   score += 5;
-  scoreText.setText(`score: ${score}`);
+  scoreText.setText(`Score: ${score}`);
   co.disableBody(true, true);
   countCo_l2++;
 }
 
 function scoreCo2_l2(player, co) {
   score += 5;
-  scoreText.setText(`score: ${score}`);
+  scoreText.setText(`Score: ${score}`);
   co.disableBody(true, true);
   countCo2_l2++;
 }
 
 function lifeLeft_l2(player, cross) {
   life -= 1;
-  lifeText.setText(`life: ${life}`);
+  lifeText.setText(`Life: ${life}`);
   cross.disableBody(true, true);
   countCross_l2++;
 }
 
 function lifeLeft2_l2(player, cross) {
   life -= 1;
-  lifeText.setText(`life: ${life}`);
+  lifeText.setText(`Life: ${life}`);
   cross.disableBody(true, true);
   countCross2_l2++;
 }
@@ -145,36 +145,25 @@ var GameOver = new Phaser.Class({
   
   function GameOver() {
     Phaser.Scene.call(this, { key: "gameOver" });
+    },
+  
+  
+  preload: function () {
+      this.load.image("end", "asset/end.png");
+
   },
   
   create: function () {
+          this.add
+            .image(config.width / 2, config.height / 2, "end")
+            .setScale(0.6);
 
-		this.add
-      .text(config.width * 0.5, config.height * 0.3, "Game Over", {
-        fontSize: "52px",
-        color: "#ff0000",
-      })
-      .setOrigin(0.5);
     
     
-    this.add.text(config.width / 2 - 150, config.height / 2 + 100, `Your score is ${score}`, {
-      fontSize: "32px",
-      color: "#ff0000",
+    this.add.text(config.width / 2 - 210, config.height / 2 + 137, `${score}`, {
+      fontSize: "100px",
+      color: "#DDDDDD",
     });
-    
-    
-		// const button = this.add
-    //   .rectangle(config.width * 0.5, config.height * 0.55, 150, 75, 0xffffff)
-    //   .setInteractive()
-    //   .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-    //     this.scene.start("start");
-    //   });
-
-    // this.add
-    //   .text(button.x, button.y, "Play Again", {
-    //     color: "#000000",
-    //   })
-    //   .setOrigin(0.5);
     
   },
   
@@ -200,12 +189,12 @@ var Start = new Phaser.Class({
     
   create: function () {
       
-    this.add.image(config.width / 2, config.height / 2, 'front').setScale(1.2);
+    this.add.image(config.width / 2, config.height / 2, 'front').setScale(0.58);
     
 
-    this.add.text(config.width / 2 - 200, config.height / 2 - 100, "Welcome to the game!", { 'fontSize': '32px', fill: '#fff' });
+    // this.add.text(config.width / 2 - 200, config.height / 2 - 100, "Oxygenator", { 'fontSize': '100px', fill: '#f1eeff', 'fontFamily': 'Arial' });
     
-    var text = this.add.text(config.width / 2 - 250, config.height / 2 + 100, "Click here to continue", { 'fontSize': '38px', fill: '#fff' });
+    var text = this.add.text(config.width / 2 - 365, config.height / 2 + 95, "Start", { 'fontSize': '38px', fill: '#fff' });
 
 
         text.setInteractive();
@@ -213,7 +202,18 @@ var Start = new Phaser.Class({
             this.scene.start("play");
         }, this);
 
-    }
+        
+        var text2 = this.add.text(config.width - 353 , config.height / 2 + 96, "Help", { 'fontSize': '38px', fill: '#fff' });
+        
+        
+        text2.setInteractive();
+        text2.on('pointerdown', function () {
+          this.scene.start("play");
+        }, this)
+        
+        
+  },
+
 });
 
 
@@ -234,21 +234,24 @@ var Play = new Phaser.Class({
         this.load.image("ground", "asset/platform.png");
         this.load.image("co", "asset/co.png");
         this.load.image("sun", "asset/sun.png");
-        this.load.image("cross", "asset/cross.png");
+      this.load.image("cross", "asset/cross.png");
+      this.load.image("background", "asset/background.jpg");
     },
 
     create: function() {
-        player = this.physics.add.image(config.width/2, config.height, "tree");
+      this.add.image(config.width / 2, config.height / 2, "background").setScale(1.2);
+      player = this.physics.add.image(config.width / 2, config.height, "tree");
+      
 
         // change the size of the player
         player.setScale(0.8);
 
-        scoreText = this.add.text(16, 16, `score: ${score}`, {
+        scoreText = this.add.text(16, 16, `Score: ${score}`, {
             fontSize: "32px",
             fill: "#000",
         });
 
-        lifeText = this.add.text(16, 50, `life: ${life}`, {
+        lifeText = this.add.text(config.width - 200, 16, `Life: ${life}`, {
             fontSize: "32px",
             fill: "#000",
         });
@@ -410,9 +413,16 @@ var Level2 = new Phaser.Class({
     this.load.image("no", "asset/n2o.png");
     this.load.image("pollu", "asset/pollution.png");
     this.load.image("h2", "asset/h2.png");
+      this.load.image("background", "asset/background.jpg");
+
   },
 
   create: function () {
+
+    this.add
+      .image(config.width / 2, config.height / 2, "background")
+      .setScale(1.2);
+
       
     player = this.physics.add.image(config.width/2, config.height / 2 , "tree");
     platform = this.physics.add.staticGroup();
