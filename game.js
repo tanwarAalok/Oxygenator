@@ -134,9 +134,8 @@ function lifeLeft2_l2(player, cross) {
 }
 
 
+
 // ! ************************************************************
-
-
 
 var GameOver = new Phaser.Class({
   Extends: Phaser.Scene,
@@ -183,7 +182,7 @@ var Start = new Phaser.Class({
     
 
   preload: function () {
-        this.load.image("front", "asset/front page.png");
+        this.load.image("front", "asset/first.png");
         
  },
     
@@ -191,25 +190,14 @@ var Start = new Phaser.Class({
       
     this.add.image(config.width / 2, config.height / 2, 'front').setScale(0.58);
     
-
-    // this.add.text(config.width / 2 - 200, config.height / 2 - 100, "Oxygenator", { 'fontSize': '100px', fill: '#f1eeff', 'fontFamily': 'Arial' });
     
-    var text = this.add.text(config.width / 2 - 365, config.height / 2 + 95, "Start", { 'fontSize': '38px', fill: '#fff' });
+    var text = this.add.text(config.width / 2 - 80, config.height / 2 + 180, "Start", { 'fontSize': '42px', fill: '#545454' });
 
 
         text.setInteractive();
         text.on('pointerdown', function () {
             this.scene.start("play");
         }, this);
-
-        
-        var text2 = this.add.text(config.width - 353 , config.height / 2 + 96, "Help", { 'fontSize': '38px', fill: '#fff' });
-        
-        
-        text2.setInteractive();
-        text2.on('pointerdown', function () {
-          this.scene.start("play");
-        }, this)
         
         
   },
@@ -437,15 +425,15 @@ var Level2 = new Phaser.Class({
     
     this.physics.add.collider(player, platform);  
 
-    scoreText = this.add.text(16, 16, `score: ${score}`, {
-      fontSize: "32px",
-      fill: "#000",
-    });
+        scoreText = this.add.text(16, 16, `Score: ${score}`, {
+          fontSize: "32px",
+          fill: "#000",
+        });
 
-    lifeText = this.add.text(16, 50, `life: ${life}`, {
-      fontSize: "32px",
-      fill: "#000",
-    });
+        lifeText = this.add.text(config.width - 200, 16, `Life: ${life}`, {
+          fontSize: "32px",
+          fill: "#000",
+        });
 
 
     foodSun = this.physics.add.image(500, 0, "sun");
@@ -716,12 +704,7 @@ var config = {
       debug: false,
     },
   },
-  scene: [Start, Play, Level2, GameOver]
-//   scene: {
-//     preload: preload,
-//     create: create,
-//     update: update,
-//   },
+  scene: [Start, Play, Level2, GameOver],
 };
 
 var game = new Phaser.Game(config);
