@@ -2,5 +2,5 @@
 Mulitlevel 2D game 
 
 
-# CONTRIBUTOR
+# Contributor
 Stress Buster with Great Hand- Eye Co-ordination.
